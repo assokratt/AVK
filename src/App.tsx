@@ -18,10 +18,13 @@ L.Icon.Default.mergeOptions({
 
 interface Meeting {
   id: number;
-  date: string;
+  regNumber: string;
+  startDate: string;
+  endDate: string;
   place: string;
-  keywords: string;
+  topic: string;
   organizer: string;
+  participantCount: string;
   lat: number;
   lng: number;
 }
@@ -33,30 +36,99 @@ function App() {
   const [meetings] = useState<Meeting[]>([
     { 
       id: 1, 
-      date: '15.04.2026', 
-      place: 'Tallinn, Vabaduse väljak', 
-      keywords: 'keskkond, kliimakriis', 
+      regNumber: '1-1/2026/234',
+      startDate: '15.04.2026 14:00',
+      endDate: '15.04.2026 18:00',
+      place: 'Tallinn, Vabaduse väljak',
+      topic: 'Kliimakriisi ja keskkonnakaitse teemaline avalik arutelu',
       organizer: 'MTÜ Roheline Tulevik',
+      participantCount: 'kuni 500',
       lat: 59.4339, 
       lng: 24.7281 
     },
     { 
       id: 2, 
-      date: '22.04.2026', 
-      place: 'Tartu, Raekoja plats', 
-      keywords: 'haridus, noored', 
+      regNumber: '1-1/2026/198',
+      startDate: '22.04.2026 12:00',
+      endDate: '22.04.2026 16:00',
+      place: 'Tartu, Raekoja plats 1',
+      topic: 'Haridusreformi avalik arutelu - õpilaste õigused ja kohustused',
       organizer: 'Eesti Õpilasesinduste Liit',
+      participantCount: 'kuni 200',
       lat: 58.3806, 
       lng: 26.7226 
     },
     { 
       id: 3, 
-      date: '28.04.2026', 
-      place: 'Pärnu, Rannapark', 
-      keywords: 'kultuur, muusika', 
-      organizer: 'Pärnu Kultuuri SA',
+      regNumber: '1-1/2026/212',
+      startDate: '28.04.2026 16:00',
+      endDate: '28.04.2026 20:00',
+      place: 'Pärnu, Rannapark (lähedal laululava)',
+      topic: 'Kultuuri- ja muusikafestivali avalik tutvustus',
+      organizer: 'Pärnu Kultuuri Sihtasutus',
+      participantCount: 'kuni 1000',
       lat: 58.3850, 
       lng: 24.4978 
+    },
+    { 
+      id: 4, 
+      regNumber: '1-1/2026/156',
+      startDate: '05.04.2026 10:00',
+      endDate: '05.04.2026 14:00',
+      place: 'Tallinn, Toompea loss (Lossi plats 1a)',
+      topic: 'Kodanikualgatus põhiseaduse muutmise kohta - avalik arutelu',
+      organizer: 'MTÜ Avatud Eesti',
+      participantCount: 'kuni 150',
+      lat: 59.4368, 
+      lng: 24.7378 
+    },
+    { 
+      id: 5, 
+      regNumber: '1-1/2026/267',
+      startDate: '30.04.2026 18:00',
+      endDate: '30.04.2026 21:00',
+      place: 'Narva, Peetri plats 3',
+      topic: 'Piiriäärsete omavalitsuste koostöö ja arengu avalik arutelu',
+      organizer: 'Narva Linnavalitsus',
+      participantCount: 'kuni 300',
+      lat: 59.3777, 
+      lng: 28.1903 
+    },
+    { 
+      id: 6, 
+      regNumber: '1-1/2026/189',
+      startDate: '18.04.2026 13:00',
+      endDate: '18.04.2026 17:00',
+      place: 'Viljandi, Keskväljak (Vabaduse plats)',
+      topic: 'Maapiirkondade areng ja toetused - avalik infopäev',
+      organizer: 'Viljandi Maavalitsus',
+      participantCount: 'kuni 100',
+      lat: 58.3639, 
+      lng: 25.5897 
+    },
+    { 
+      id: 7, 
+      regNumber: '1-1/2026/223',
+      startDate: '25.04.2026 15:00',
+      endDate: '25.04.2026 19:00',
+      place: 'Jõhvi, Keskväljak (Rakvere tn 13a)',
+      topic: 'Ida-Virumaa tööhõive ja majanduse avalik foorum',
+      organizer: 'Ida-Viru Ettevõtluskeskus',
+      participantCount: 'kuni 250',
+      lat: 59.3592, 
+      lng: 27.4211 
+    },
+    { 
+      id: 8, 
+      regNumber: '1-1/2026/245',
+      startDate: '12.04.2026 11:00',
+      endDate: '12.04.2026 15:00',
+      place: 'Kuressaare, Keskväljak (Tallinna 2)',
+      topic: 'Saarte elukvaliteet ja ühendused - avalik arutelu',
+      organizer: 'Saarte Koostöö Selts',
+      participantCount: 'kuni 120',
+      lat: 58.2488, 
+      lng: 22.4847 
     },
   ]);
 
@@ -65,12 +137,9 @@ function App() {
       {/* Header */}
       <header className="bg-[#004277] text-white">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-white rounded"></div>
-            <div>
-              <h1 className="text-xl font-bold">Politsei- ja Piirivalveamet</h1>
-              <p className="text-sm text-blue-200">Avalikust koosolekust teavitamise iseteenindus</p>
-            </div>
+          <div>
+            <h1 className="text-xl font-bold">Politsei- ja Piirivalveamet</h1>
+            <p className="text-sm text-blue-200">Avalikust koosolekust teavitamise iseteenindus</p>
           </div>
           <nav>
             <button 
@@ -87,10 +156,7 @@ function App() {
       <main className="container mx-auto px-4 py-8">
         {/* Info Cards */}
         <section className="grid md:grid-cols-3 gap-6 mb-12">
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-              <span className="text-2xl">📋</span>
-            </div>
+          <div className="bg-white rounded-lg shadow-md p-6 border-l-4 border-[#004277]">
             <h3 className="text-lg font-bold mb-2 text-[#004277]">Mis on avalik koosolek?</h3>
             <p className="text-gray-600 text-sm">
               Avalik koosolek on avalikus kohas toimuv üritus, kus käsitletakse ühiskondlikult olulisi küsimusi. 
@@ -98,10 +164,7 @@ function App() {
             </p>
           </div>
 
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-              <span className="text-2xl">⚠️</span>
-            </div>
+          <div className="bg-white rounded-lg shadow-md p-6 border-l-4 border-[#004277]">
             <h3 className="text-lg font-bold mb-2 text-[#004277]">Teavitamise kohustus</h3>
             <p className="text-gray-600 text-sm">
               Avaliku koosoleku korraldaja peab politseile teatama vähemalt 5 päeva enne koosoleku toimumist. 
@@ -109,10 +172,7 @@ function App() {
             </p>
           </div>
 
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-              <span className="text-2xl">✅</span>
-            </div>
+          <div className="bg-white rounded-lg shadow-md p-6 border-l-4 border-[#004277]">
             <h3 className="text-lg font-bold mb-2 text-[#004277]">Korraldaja kohustused</h3>
             <p className="text-gray-600 text-sm">
               Korraldaja vastutab koosoleku rahumeelse läbiviimise eest, peab tagama avaliku korra 
@@ -154,18 +214,18 @@ function App() {
           {/* Filter Bar */}
           <div className="grid md:grid-cols-4 gap-4 mb-6">
             <input
-              type="text"
-              placeholder="Kuupäev alates..."
+              type="date"
+              placeholder="Alguskuupäev"
+              className="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#004277]"
+            />
+            <input
+              type="date"
+              placeholder="Lõppkuupäev"
               className="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#004277]"
             />
             <input
               type="text"
-              placeholder="Kuupäev kuni..."
-              className="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#004277]"
-            />
-            <input
-              type="text"
-              placeholder="Koht..."
+              placeholder="Otsing..."
               className="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#004277]"
             />
             <button className="bg-[#004277] text-white px-6 py-2 rounded font-semibold hover:bg-[#00335c] transition">
@@ -177,27 +237,27 @@ function App() {
           {viewMode === 'table' && (
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-gray-50 border-b-2 border-gray-200">
+                <thead className="bg-gray-100 border-b-2 border-gray-300">
                   <tr>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Kuupäev</th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Koht</th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Märksõnad</th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Korraldaja</th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Tegevused</th>
+                    <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase">Reg. nr</th>
+                    <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase">Algus</th>
+                    <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase">Lõpp</th>
+                    <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase">Koht</th>
+                    <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase">Teema</th>
+                    <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase">Korraldaja</th>
+                    <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase">Osalejaid</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                   {meetings.map((meeting) => (
                     <tr key={meeting.id} className="hover:bg-gray-50 transition">
-                      <td className="px-4 py-4 text-sm text-gray-900">{meeting.date}</td>
-                      <td className="px-4 py-4 text-sm text-gray-900">{meeting.place}</td>
-                      <td className="px-4 py-4 text-sm text-gray-600">{meeting.keywords}</td>
-                      <td className="px-4 py-4 text-sm text-gray-900">{meeting.organizer}</td>
-                      <td className="px-4 py-4 text-sm">
-                        <button className="text-[#004277] hover:text-[#00335c] font-medium">
-                          Vaata detaile →
-                        </button>
-                      </td>
+                      <td className="px-4 py-3 text-sm text-[#004277] font-medium">{meeting.regNumber}</td>
+                      <td className="px-4 py-3 text-sm text-gray-900">{meeting.startDate}</td>
+                      <td className="px-4 py-3 text-sm text-gray-900">{meeting.endDate}</td>
+                      <td className="px-4 py-3 text-sm text-gray-900">{meeting.place}</td>
+                      <td className="px-4 py-3 text-sm text-gray-700 max-w-xs">{meeting.topic}</td>
+                      <td className="px-4 py-3 text-sm text-gray-900">{meeting.organizer}</td>
+                      <td className="px-4 py-3 text-sm text-gray-600">{meeting.participantCount}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -220,16 +280,23 @@ function App() {
                 {meetings.map((meeting) => (
                   <Marker key={meeting.id} position={[meeting.lat, meeting.lng]}>
                     <Popup>
-                      <div className="p-2">
-                        <h3 className="font-bold text-[#004277] mb-1">{meeting.place}</h3>
-                        <p className="text-sm text-gray-600 mb-1">
-                          <strong>Kuupäev:</strong> {meeting.date}
+                      <div className="p-2 min-w-[250px]">
+                        <p className="text-xs text-gray-500 mb-1">Reg. nr: {meeting.regNumber}</p>
+                        <h3 className="font-bold text-[#004277] mb-2 text-sm">{meeting.topic}</h3>
+                        <p className="text-xs text-gray-600 mb-1">
+                          <strong>Algus:</strong> {meeting.startDate}
                         </p>
-                        <p className="text-sm text-gray-600 mb-1">
-                          <strong>Märksõnad:</strong> {meeting.keywords}
+                        <p className="text-xs text-gray-600 mb-1">
+                          <strong>Lõpp:</strong> {meeting.endDate}
                         </p>
-                        <p className="text-sm text-gray-600">
+                        <p className="text-xs text-gray-600 mb-1">
+                          <strong>Koht:</strong> {meeting.place}
+                        </p>
+                        <p className="text-xs text-gray-600 mb-1">
                           <strong>Korraldaja:</strong> {meeting.organizer}
+                        </p>
+                        <p className="text-xs text-gray-600">
+                          <strong>Osalejaid:</strong> {meeting.participantCount}
                         </p>
                       </div>
                     </Popup>
