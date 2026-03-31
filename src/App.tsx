@@ -18,11 +18,12 @@ L.Icon.Default.mergeOptions({
 
 interface Meeting {
   id: number;
-  date: string;
+  startDateTime: string;
+  endDateTime: string;
   location: string;
+  route: string | null;
   purpose: string;
   organizer: string;
-  route: string;
   lat: number;
   lng: number;
 }
@@ -34,111 +35,122 @@ function App() {
   const [meetings] = useState<Meeting[]>([
     {
       id: 1,
-      date: '05.06.2026 kell 17.45-18.00',
+      startDateTime: '05.06.2026 17:45',
+      endDateTime: '05.06.2026 18:00',
       location: 'Harju maakond, Tallinn, Kesklinna linnaosa, Tammsaare park A.H. Tammsaare monumendi ees',
+      route: null,
       purpose: 'Juutide invasioonist, okupatsioonist ja genotsiidist Palestiinas, Liibanonis ning Süürias',
-      organizer: 'Indrek Kabel. acb.acb@mail.com',
-      route: 'Puudub',
+      organizer: 'Indrek Kabel, acb.acb@mail.com',
       lat: 59.4275,
       lng: 24.7586
     },
     {
       id: 2,
-      date: '29.05.2026 kell 17.45-18.00',
+      startDateTime: '29.05.2026 17:45',
+      endDateTime: '29.05.2026 18:00',
       location: 'Harju maakond, Tallinn, Kesklinna linnaosa, Tammsaare park A.H. Tammsaare monumendi ees',
+      route: null,
       purpose: 'Juutide invasioonist, okupatsioonist ja genotsiidist Palestiinas, Liibanonis ning Süürias',
-      organizer: 'Indrek Kabel. acb.acb@mail.com',
-      route: 'Puudub',
+      organizer: 'Indrek Kabel, acb.acb@mail.com',
       lat: 59.4275,
       lng: 24.7586
     },
     {
       id: 3,
-      date: '27.05.2026 kell 16.00-17.00',
-      location: 'Harju maakond, Tallinn, Kesklinna linnaosa, Pikk tn 19 Venemaa saatkond',
+      startDateTime: '27.05.2026 16:00',
+      endDateTime: '27.05.2026 17:00',
+      location: 'Harju maakond, Tallinn, Kesklinna linnaosa, Pikk tn 19',
+      route: null,
       purpose: 'Pikett – „Meeleavaldus sõja vastu"',
       organizer: 'Tarmo Kruusimäe, tel. 5219885',
-      route: 'Puudub',
       lat: 59.4412,
       lng: 24.7453
     },
     {
       id: 4,
-      date: '22.05.2026 kell 17.45-18.00',
+      startDateTime: '22.05.2026 17:45',
+      endDateTime: '22.05.2026 18:00',
       location: 'Harju maakond, Tallinn, Kesklinna linnaosa, Tammsaare park A.H. Tammsaare monumendi ees',
+      route: null,
       purpose: 'Juutide invasioonist, okupatsioonist ja genotsiidist Palestiinas, Liibanonis ning Süürias',
-      organizer: 'Indrek Kabel. acb.acb@mail.com',
-      route: 'Puudub',
+      organizer: 'Indrek Kabel, acb.acb@mail.com',
       lat: 59.4275,
       lng: 24.7586
     },
     {
       id: 5,
-      date: '20.05.2026 kell 16.00-17.00',
-      location: 'Harju maakond, Tallinn, Kesklinna linnaosa, Pikk tn 19 Venemaa saatkond',
+      startDateTime: '20.05.2026 16:00',
+      endDateTime: '20.05.2026 17:00',
+      location: 'Harju maakond, Tallinn, Kesklinna linnaosa, Pikk tn 19',
+      route: null,
       purpose: 'Pikett – „Meeleavaldus sõja vastu"',
       organizer: 'Tarmo Kruusimäe, tel. 5219885',
-      route: 'Puudub',
       lat: 59.4412,
       lng: 24.7453
     },
     {
       id: 6,
-      date: '17.05.2026 kell 11.00-11.30',
-      location: 'Harju maakond, Tallinn, Kesklinna linnaosa, Liivalaia tn 38 Kaasani kirik',
-      purpose: 'Aprilli-ja maikuu Ülestõusmispüha ristirongkäigud, kümme rongkäiku',
-      organizer: 'Tallinna Jumalaema Sündimise (Kaasani) Kogudus, Vladimir Jaanimägi, 55 66 8601',
+      startDateTime: '17.05.2026 11:00',
+      endDateTime: '17.05.2026 11:30',
+      location: 'Harju maakond, Tallinn, Kesklinna linnaosa, Liivalaia tn 38',
       route: 'Ristikäik ümber kiriku aia, liigutakse kõnniteedel',
+      purpose: 'Aprilli-ja maikuu Ülestõusmispüha ristirongkäigud, kümme rongkäiku',
+      organizer: 'Tallinna Jumalaema Sündimise (Kaasani) Kogudus, Vladimir Jaanimägi, tel. 55668601',
       lat: 59.4295,
       lng: 24.7502
     },
     {
       id: 7,
-      date: '16.05.2026 kell 11:45-16:00',
-      location: 'Ida-Viru maakond, Jõhvi vald, Jõhvi linn, Pargi tänav T2',
-      purpose: 'Kohalike elanikega suhtlemine, nende murede ja õnnede jagamine ning erakonna maailmavaate tutvustamine.',
-      organizer: 'Sotsiaaldemokraatlik Erakond, Mark Gerassimenko 53587765; e-post: mark.gerassimenko@gmail.com',
-      route: 'Puudub',
+      startDateTime: '16.05.2026 11:45',
+      endDateTime: '16.05.2026 16:00',
+      location: 'Ida-Viru maakond, Jõhvi vald, Jõhvi linn, Pargi tn T2',
+      route: null,
+      purpose: 'Kohalike elanikega suhtlemine, nende murede ja õnnede jagamine ning erakonna maailmavaate tutvustamine',
+      organizer: 'Sotsiaaldemokraatlik Erakond, Mark Gerassimenko, tel. 53587765, e-post: mark.gerassimenko@gmail.com',
       lat: 59.3592,
       lng: 27.4211
     },
     {
       id: 8,
-      date: '15.05.2026 kell 17.45-18.00',
+      startDateTime: '15.05.2026 17:45',
+      endDateTime: '15.05.2026 18:00',
       location: 'Harju maakond, Tallinn, Kesklinna linnaosa, Tammsaare park A.H. Tammsaare monumendi ees',
+      route: null,
       purpose: 'Juutide invasioonist, okupatsioonist ja genotsiidist Palestiinas, Liibanonis ning Süürias',
-      organizer: 'Indrek Kabel. acb.acb@mail.com',
-      route: 'Puudub',
+      organizer: 'Indrek Kabel, acb.acb@mail.com',
       lat: 59.4275,
       lng: 24.7586
     },
     {
       id: 9,
-      date: '13.05.2026 kell 16.00-17.00',
-      location: 'Harju maakond, Tallinn, Kesklinna linnaosa, Pikk tn 19 Venemaa saatkond',
+      startDateTime: '13.05.2026 16:00',
+      endDateTime: '13.05.2026 17:00',
+      location: 'Harju maakond, Tallinn, Kesklinna linnaosa, Pikk tn 19',
+      route: null,
       purpose: 'Pikett – „Meeleavaldus sõja vastu"',
       organizer: 'Tarmo Kruusimäe, tel. 5219885',
-      route: 'Puudub',
       lat: 59.4412,
       lng: 24.7453
     },
     {
       id: 10,
-      date: '10.05.2026 kell 11.00-11.30',
-      location: 'Harju maakond, Tallinn, Kesklinna linnaosa, Liivalaia tn 38 Kaasani kirik',
-      purpose: 'Aprilli-ja maikuu Ülestõusmispüha ristirongkäigud, kümme rongkäiku',
-      organizer: 'Tallinna Jumalaema Sündimise (Kaasani) Kogudus, Vladimir Jaanimägi, 55 66 8601',
+      startDateTime: '10.05.2026 11:00',
+      endDateTime: '10.05.2026 11:30',
+      location: 'Harju maakond, Tallinn, Kesklinna linnaosa, Liivalaia tn 38',
       route: 'Ristikäik ümber kiriku aia, liigutakse kõnniteedel',
+      purpose: 'Aprilli-ja maikuu Ülestõusmispüha ristirongkäigud, kümme rongkäiku',
+      organizer: 'Tallinna Jumalaema Sündimise (Kaasani) Kogudus, Vladimir Jaanimägi, tel. 55668601',
       lat: 59.4295,
       lng: 24.7502
     },
     {
       id: 11,
-      date: '08.05.2026 kell 17.45-18.00',
+      startDateTime: '08.05.2026 17:45',
+      endDateTime: '08.05.2026 18:00',
       location: 'Harju maakond, Tallinn, Kesklinna linnaosa, Tammsaare park A.H. Tammsaare monumendi ees',
+      route: null,
       purpose: 'Juutide invasioonist, okupatsioonist ja genotsiidist Palestiinas, Liibanonis ning Süürias',
-      organizer: 'Indrek Kabel. acb.acb@mail.com',
-      route: 'Puudub',
+      organizer: 'Indrek Kabel, acb.acb@mail.com',
       lat: 59.4275,
       lng: 24.7586
     },
@@ -247,19 +259,36 @@ function App() {
 
           {/* Table View */}
           {viewMode === 'table' && (
-            <div className="space-y-4">
-              {meetings.map((meeting) => (
-                <div key={meeting.id} className="bg-gray-50 border-l-4 border-[#004277] p-4 rounded">
-                  <h3 className="font-bold text-[#004277] mb-2">Avalik koosolek</h3>
-                  <div className="space-y-1 text-sm text-gray-700">
-                    <p><strong>{meeting.date}</strong></p>
-                    <p><strong>Asukoht:</strong> {meeting.location}</p>
-                    <p><strong>Eesmärk:</strong> {meeting.purpose}</p>
-                    <p><strong>Korraldaja:</strong> {meeting.organizer}</p>
-                    <p><strong>Marsruut:</strong> {meeting.route}</p>
-                  </div>
-                </div>
-              ))}
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-gray-100 border-b-2 border-gray-300">
+                  <tr>
+                    <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase">Algus</th>
+                    <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase">Lõpp</th>
+                    <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase">Koht / Marsruut</th>
+                    <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase">Eesmärk</th>
+                    <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase">Korraldaja</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {meetings.map((meeting) => (
+                    <tr key={meeting.id} className="hover:bg-gray-50 transition">
+                      <td className="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{meeting.startDateTime}</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{meeting.endDateTime}</td>
+                      <td className="px-4 py-3 text-sm text-gray-700">
+                        {meeting.location}
+                        {meeting.route && (
+                          <div className="text-gray-500 italic mt-1">
+                            Marsruut: {meeting.route}
+                          </div>
+                        )}
+                      </td>
+                      <td className="px-4 py-3 text-sm text-gray-700 max-w-md">{meeting.purpose}</td>
+                      <td className="px-4 py-3 text-sm text-gray-900">{meeting.organizer}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           )}
 
@@ -278,22 +307,27 @@ function App() {
                 {meetings.map((meeting) => (
                   <Marker key={meeting.id} position={[meeting.lat, meeting.lng]}>
                     <Popup>
-                      <div className="p-2 min-w-[280px]">
-                        <h3 className="font-bold text-[#004277] mb-2">Avalik koosolek</h3>
+                      <div className="p-2 min-w-[300px]">
+                        <h3 className="font-bold text-[#004277] mb-2 text-sm">Avalik koosolek</h3>
                         <p className="text-xs text-gray-900 mb-1">
-                          <strong>{meeting.date}</strong>
+                          <strong>Algus:</strong> {meeting.startDateTime}
+                        </p>
+                        <p className="text-xs text-gray-900 mb-1">
+                          <strong>Lõpp:</strong> {meeting.endDateTime}
                         </p>
                         <p className="text-xs text-gray-600 mb-1">
-                          <strong>Asukoht:</strong> {meeting.location}
+                          <strong>Koht:</strong> {meeting.location}
                         </p>
+                        {meeting.route && (
+                          <p className="text-xs text-gray-500 italic mb-1">
+                            <strong>Marsruut:</strong> {meeting.route}
+                          </p>
+                        )}
                         <p className="text-xs text-gray-600 mb-1">
                           <strong>Eesmärk:</strong> {meeting.purpose}
                         </p>
-                        <p className="text-xs text-gray-600 mb-1">
-                          <strong>Korraldaja:</strong> {meeting.organizer}
-                        </p>
                         <p className="text-xs text-gray-600">
-                          <strong>Marsruut:</strong> {meeting.route}
+                          <strong>Korraldaja:</strong> {meeting.organizer}
                         </p>
                       </div>
                     </Popup>
