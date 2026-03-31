@@ -53,9 +53,143 @@ function App() {
       lat: 59.4275,
       lng: 24.7586
     },
-    // ... teised koosolekud (abbreviated for brevity)
+    {
+      id: 2,
+      startDateTime: '29.05.2026 17:45',
+      endDateTime: '29.05.2026 18:00',
+      location: 'Harju maakond, Tallinn, Kesklinna linnaosa, Tammsaare park A.H. Tammsaare monumendi ees',
+      route: null,
+      purpose: 'Juutide invasioonist, okupatsioonist ja genotsiidist Palestiinas, Liibanonis ning Süürias',
+      organizer: 'Indrek Kabel, acb.acb@mail.com',
+      status: 'approved',
+      lat: 59.4275,
+      lng: 24.7586
+    },
+    {
+      id: 3,
+      startDateTime: '27.05.2026 16:00',
+      endDateTime: '27.05.2026 17:00',
+      location: 'Harju maakond, Tallinn, Kesklinna linnaosa, Pikk tn 19',
+      route: null,
+      purpose: 'Pikett – „Meeleavaldus sõja vastu"',
+      organizer: 'Tarmo Kruusimäe, tel. 5219885',
+      status: 'submitted', // Example of a different status
+      lat: 59.4412,
+      lng: 24.7453
+    },
+    {
+      id: 4,
+      startDateTime: '22.05.2026 17:45',
+      endDateTime: '22.05.2026 18:00',
+      location: 'Harju maakond, Tallinn, Kesklinna linnaosa, Tammsaare park A.H. Tammsaare monumendi ees',
+      route: null,
+      purpose: 'Juutide invasioonist, okupatsioonist ja genotsiidist Palestiinas, Liibanonis ning Süürias',
+      organizer: 'Indrek Kabel, acb.acb@mail.com',
+      status: 'approved',
+      lat: 59.4275,
+      lng: 24.7586
+    },
+    {
+      id: 5,
+      startDateTime: '20.05.2026 16:00',
+      endDateTime: '20.05.2026 17:00',
+      location: 'Harju maakond, Tallinn, Kesklinna linnaosa, Pikk tn 19',
+      route: null,
+      purpose: 'Pikett – „Meeleavaldus sõja vastu"',
+      organizer: 'Tarmo Kruusimäe, tel. 5219885',
+      status: 'submitted',
+      lat: 59.4412,
+      lng: 24.7453
+    },
+    {
+      id: 6,
+      startDateTime: '17.05.2026 11:00',
+      endDateTime: '17.05.2026 11:30',
+      location: 'Harju maakond, Tallinn, Kesklinna linnaosa, Liivalaia tn 38',
+      route: 'Ristikäik ümber kiriku aia, liigutakse kõnniteedel',
+      purpose: 'Aprilli-ja maikuu Ülestõusmispüha ristirongkäigud, kümme rongkäiku',
+      organizer: 'Tallinna Jumalaema Sündimise (Kaasani) Kogudus, Vladimir Jaanimägi, tel. 55668601',
+      status: 'approved',
+      lat: 59.4295,
+      lng: 24.7502
+    },
+    {
+      id: 7,
+      startDateTime: '16.05.2026 11:45',
+      endDateTime: '16.05.2026 16:00',
+      location: 'Ida-Viru maakond, Jõhvi vald, Jõhvi linn, Pargi tn T2',
+      route: null,
+      purpose: 'Kohalike elanikega suhtlemine, nende murede ja õnnede jagamine ning erakonna maailmavaate tutvustamine',
+      organizer: 'Sotsiaaldemokraatlik Erakond, Mark Gerassimenko, tel. 53587765, e-post: mark.gerassimenko@gmail.com',
+      status: 'completed',
+      lat: 59.3592,
+      lng: 27.4211
+    },
+    {
+      id: 8,
+      startDateTime: '15.05.2026 17:45',
+      endDateTime: '15.05.2026 18:00',
+      location: 'Harju maakond, Tallinn, Kesklinna linnaosa, Tammsaare park A.H. Tammsaare monumendi ees',
+      route: null,
+      purpose: 'Juutide invasioonist, okupatsioonist ja genotsiidist Palestiinas, Liibanonis ning Süürias',
+      organizer: 'Indrek Kabel, acb.acb@mail.com',
+      status: 'approved',
+      lat: 59.4275,
+      lng: 24.7586
+    },
+    {
+      id: 9,
+      startDateTime: '13.05.2026 16:00',
+      endDateTime: '13.05.2026 17:00',
+      location: 'Harju maakond, Tallinn, Kesklinna linnaosa, Pikk tn 19',
+      route: null,
+      purpose: 'Pikett – „Meeleavaldus sõja vastu"',
+      organizer: 'Tarmo Kruusimäe, tel. 5219885',
+      status: 'submitted',
+      lat: 59.4412,
+      lng: 24.7453
+    },
+    {
+      id: 10,
+      startDateTime: '10.05.2026 11:00',
+      endDateTime: '10.05.2026 11:30',
+      location: 'Harju maakond, Tallinn, Kesklinna linnaosa, Liivalaia tn 38',
+      route: 'Ristikäik ümber kiriku aia, liigutakse kõnniteedel',
+      purpose: 'Aprilli-ja maikuu Ülestõusmispüha ristirongkäigud, kümme rongkäiku',
+      organizer: 'Tallinna Jumalaema Sündimise (Kaasani) Kogudus, Vladimir Jaanimägi, tel. 55668601',
+      status: 'approved',
+      lat: 59.4295,
+      lng: 24.7502
+    },
+    {
+      id: 11,
+      startDateTime: '08.05.2026 17:45',
+      endDateTime: '08.05.2026 18:00',
+      location: 'Harju maakond, Tallinn, Kesklinna linnaosa, Tammsaare park A.H. Tammsaare monumendi ees',
+      route: null,
+      purpose: 'Juutide invasioonist, okupatsioonist ja genotsiidist Palestiinas, Liibanonis ning Süürias',
+      organizer: 'Indrek Kabel, acb.acb@mail.com',
+      status: 'approved',
+      lat: 59.4275,
+      lng: 24.7586
+    },
   ]);
 
+  // OrganizerDashboard: Status badges logic
+  const getStatusBadgeClass = (status: Meeting['status']) => {
+    switch (status) {
+      case 'submitted':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'approved':
+        return 'bg-green-100 text-green-800';
+      case 'completed':
+        return 'bg-gray-100 text-gray-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+  // TARA Modal - mock data for demonstration
   const handleLogin = () => {
     setIsLoggedIn(true);
     setViewMode('organizer');
