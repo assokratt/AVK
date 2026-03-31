@@ -255,41 +255,93 @@ function App() {
 
       {/* TARA Modal */}
       {showTaraModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
-            <div className="flex justify-between items-start mb-4">
-              <h2 className="text-2xl font-bold text-[#004277]">Autentimine</h2>
-              <button 
-                onClick={() => setShowTaraModal(false)}
-                className="text-gray-400 hover:text-gray-600 text-2xl"
-              >
-                ×
-              </button>
+        <div className="fixed inset-0 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-2xl max-w-md w-full p-8">
+            {/* Header */}
+            <div className="text-center mb-6">
+              <h1 className="text-2xl font-bold text-gray-800 mb-2">
+                Politsei- ja Piirivalveamet
+              </h1>
+              <p className="text-sm text-gray-600">
+                Avalikust koosolekust teavitamise iseteenindus
+              </p>
             </div>
-            
-            <p className="text-gray-600 mb-6">
-              Iseteenindusesse sisenemine nõuab autentimist läbi TARA teenuse.
-            </p>
 
-            <div className="space-y-3">
-              <button className="w-full bg-[#004277] text-white py-3 rounded-lg font-semibold hover:bg-[#00335c] transition flex items-center justify-center">
-                <span className="mr-2">🇪🇪</span>
+            {/* Demo Info Box */}
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+              <p className="text-sm text-gray-700">
+                <strong className="text-blue-900">Demo režiim:</strong> Toimivad kasutatakse käsitsi sisestatud andmeid 
+                TARA-autentimise (ID-kaart, Mobiil-ID, Smart-ID). 
+                Prototüübis sisestage oma andmed käsitsi. Avalikku koosolek 
+                korraldamist tuleb Korraldusseaduse § 74 kohaselt teatada politseile 5 töopäeva ette.
+              </p>
+            </div>
+
+            {/* Authentication Tabs */}
+            <div className="flex border-b border-gray-200 mb-6">
+              <button className="flex-1 py-3 px-4 text-sm font-medium border-b-2 border-black text-gray-900">
+                <span className="mr-2">💳</span>
                 ID-kaart
               </button>
-              <button className="w-full bg-[#004277] text-white py-3 rounded-lg font-semibold hover:bg-[#00335c] transition flex items-center justify-center">
+              <button className="flex-1 py-3 px-4 text-sm font-medium text-gray-500 hover:text-gray-700">
                 <span className="mr-2">📱</span>
                 Mobiil-ID
               </button>
-              <button className="w-full bg-[#004277] text-white py-3 rounded-lg font-semibold hover:bg-[#00335c] transition flex items-center justify-center">
+              <button className="flex-1 py-3 px-4 text-sm font-medium text-gray-500 hover:text-gray-700">
                 <span className="mr-2">🔐</span>
                 Smart-ID
               </button>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-gray-200">
-              <p className="text-xs text-gray-500 text-center">
-                TARA autentimisteenus on riiklik tugiteenus, mis võimaldab turvalist sisselogimist.
-              </p>
+            {/* Form */}
+            <div className="space-y-4 mb-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Nimi
+                </label>
+                <input
+                  type="text"
+                  placeholder="Mari Maasikas"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Isikukood
+                </label>
+                <input
+                  type="text"
+                  placeholder="39001010000"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+            </div>
+
+            {/* Buttons */}
+            <div className="space-y-3">
+              <button 
+                onClick={() => setShowTaraModal(false)}
+                className="w-full bg-black text-white py-3 rounded-lg font-medium hover:bg-gray-800 transition"
+              >
+                Logi sisse korraldajana
+              </button>
+              <button 
+                onClick={() => setShowTaraModal(false)}
+                className="w-full bg-white text-gray-700 py-3 rounded-lg font-medium border border-gray-300 hover:bg-gray-50 transition"
+              >
+                Logi sisse ametnikuna
+              </button>
+            </div>
+
+            {/* Footer Link */}
+            <div className="mt-6 text-center">
+              <button 
+                onClick={() => setShowTaraModal(false)}
+                className="text-sm text-blue-600 hover:text-blue-800 underline"
+              >
+                Vaata avalduse nõudmuste kaarti
+              </button>
             </div>
           </div>
         </div>
