@@ -40,7 +40,20 @@ function App() {
   const [mapView, setMapView] = useState<'table' | 'map'>('table');
   const [userMeetings, setUserMeetings] = useState<Meeting[]>([]);
   
-  const [publicMeetings] = useState<Meeting[]>([
+  const getStatusBadgeClass = (status: Meeting['status']) => {
+    switch (status) {
+      case 'submitted':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'approved':
+        return 'bg-green-100 text-green-800';
+      case 'completed':
+        return 'bg-gray-100 text-gray-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+  const publicMeetings: Meeting[] = [
     {
       id: 1,
       startDateTime: '05.06.2026 17:45',
@@ -73,7 +86,7 @@ function App() {
       route: null,
       purpose: 'Pikett – „Meeleavaldus sõja vastu"',
       organizer: 'Tarmo Kruusimäe, tel. 5219885',
-      status: 'submitted', // Example of a different status
+      status: 'submitted',
       lat: 59.4412,
       lng: 24.7453
     },
@@ -175,43 +188,6 @@ function App() {
     },
   ]);
 
-  // OrganizerDashboard: Status badges logic
-  const getStatusBadgeClass = (status: Meeting['status']) => {
-    switch (status) {
-      case 'submitted':
-        return 'bg-yellow-100 text-yellow-800';
-      case 'approved':
-        return 'bg-green-100 text-green-800';
-      case 'completed':
-        return 'bg-gray-100 text-gray-800';
-      default:
-        return 'bg-gray-100 text-gray-800';
-    }
-  };
-
-  // TARA Modal - mock data for demonstration
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-    setViewMode('organizer');
-    setShowTaraModal(false);
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setViewMode('public');
-  };
-
-  const handleAddMeeting = (meeting: Omit<Meeting, 'id' | 'status' | 'submittedDate'>) => {
-    const newMeeting: Meeting = {
-      ...meeting,
-      id: Date.now(),
-      status: 'submitted',
-      submittedDate: new Date().toLocaleDateString('et-EE')
-    };
-    setUserMeetings([...userMeetings, newMeeting]);
-    setShowNewMeetingForm(false);
-  };
-
   // Render different views based on mode
   if (viewMode === 'organizer' && isLoggedIn) {
     return <OrganizerDashboard 
@@ -274,7 +250,7 @@ function App() {
           </div>
         </section>
 
-        {/* Meetings Section - Continued in next message due to length */}
+        {/* Meetings Section */}
         <MeetingsSection meetings={publicMeetings} mapView={mapView} setMapView={setMapView} />
       </main>
 
@@ -386,11 +362,7 @@ function OrganizerDashboard({ meetings, onLogout, onNewMeeting, showForm, onClos
                     <td className="px-4 py-3 text-sm text-gray-700 max-w-xs truncate">{meeting.purpose}</td>
                     <td className="px-4 py-3 text-sm text-gray-600">11</td>
                     <td className="px-4 py-3 text-sm">
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                        meeting.status === 'submitted' ? 'bg-yellow-100 text-yellow-800' :
-                        meeting.status === 'approved' ? 'bg-green-100 text-green-800' :
-                        'bg-gray-100 text-gray-800'
-                      }`}>
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusBadgeClass(meeting.status)}`}>
                         {meeting.status === 'submitted' ? 'Menetluses' : 
                          meeting.status === 'approved' ? 'Teatavaks võetud' : 'Lõppenud'}
                       </span>
@@ -785,6 +757,7 @@ function MeetingsSection({ meetings, mapView, setMapView }: MeetingsSectionProps
                 <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase">Koht / Marsruut</th>
                 <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase">Eesmärk</th>
                 <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase">Korraldaja</th>
+                <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase">Staatus</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
@@ -881,7 +854,7 @@ function TaraModal({ onClose, onLogin }: TaraModalProps) {
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
           <p className="text-sm text-gray-700">
             <strong className="text-blue-900">Demo režiim:</strong> Prototüübis sisestage oma andmed käsitsi. 
-            Avaliku koosoleku korraldamist tuleb Korraldusseaduse § 74 kohaselt teatada politseile 5 töopäeva ette.
+            Avaliku koosoleku korraldamist tuleb Korraldusseaduse § 74 kohaselt teatada politseile 5 tööpäeva ette.
           </p>
         </div>
 
